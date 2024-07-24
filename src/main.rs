@@ -10,9 +10,7 @@ use embassy_rp::{
     pio::Pio,
 };
 
-mod network;
-use network::configure_network;
-
+use pico_wifi::configure_network;
 mod tcpserver;
 
 use temp_sensor::dht11::Dht11;
@@ -32,7 +30,7 @@ async fn main(spawner: Spawner) {
     // init network
     let pwr = Output::new(p.PIN_23, Level::Low);
     let cs = Output::new(p.PIN_25, Level::High);
-    let mut pio = Pio::new(p.PIO0, network::Irqs);
+    let mut pio = Pio::new(p.PIO0, pico_wifi::Irqs);
     let spi = PioSpi::new(
         &mut pio.common,
         pio.sm0,

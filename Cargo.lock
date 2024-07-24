@@ -1102,6 +1102,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "pico-wifi"
+version = "0.1.0"
+source = "git+https://github.com/d3npa/pico-wifi#7d2960b04a4da191a55fffffa27f0fa4fb9c504c"
+dependencies = [
+ "cortex-m-rt",
+ "cyw43",
+ "cyw43-pio",
+ "defmt-rtt",
+ "embassy-embedded-hal",
+ "embassy-executor",
+ "embassy-futures",
+ "embassy-net",
+ "embassy-rp",
+ "embassy-sync 0.5.0",
+ "embassy-time",
+ "embedded-io-async",
+ "heapless 0.8.0",
+ "portable-atomic",
+ "static_cell",
+]
+
+[[package]]
 name = "pin-project-lite"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1449,6 +1471,7 @@ dependencies = [
  "embassy-time",
  "embedded-io-async",
  "heapless 0.8.0",
+ "pico-wifi",
  "portable-atomic",
  "static_cell",
 ]
