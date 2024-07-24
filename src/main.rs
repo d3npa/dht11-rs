@@ -17,7 +17,8 @@ mod tcpserver;
 
 use temp_sensor::dht11::Dht11;
 
-include!("../credentials.rs");
+const WIFI_SSID: &str = env!("WIFI_SSID");
+const WIFI_PASSWORD: &str = env!("WIFI_PASSWORD");
 
 #[panic_handler]
 fn panic(_: &PanicInfo) -> ! {
