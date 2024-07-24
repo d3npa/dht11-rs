@@ -1104,7 +1104,7 @@ dependencies = [
 [[package]]
 name = "pico-wifi"
 version = "0.1.0"
-source = "git+https://github.com/d3npa/pico-wifi#7d2960b04a4da191a55fffffa27f0fa4fb9c504c"
+source = "git+https://github.com/d3npa/pico-wifi#80964f4d43c926b816ae24e1c8197ab6e0e9409d"
 dependencies = [
  "cortex-m-rt",
  "cyw43",
@@ -1118,7 +1118,6 @@ dependencies = [
  "embassy-sync 0.5.0",
  "embassy-time",
  "embedded-io-async",
- "heapless 0.8.0",
  "portable-atomic",
  "static_cell",
 ]

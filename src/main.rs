@@ -5,12 +5,14 @@ use core::panic::PanicInfo;
 use cyw43_pio::PioSpi;
 use defmt_rtt as _;
 use embassy_executor::Spawner;
+use embassy_net::{Ipv4Address, Ipv4Cidr, StaticConfigV4};
 use embassy_rp::{
     gpio::{AnyPin, Flex, Level, Output},
     pio::Pio,
 };
 
-use pico_wifi::configure_network;
+use heapless::Vec;
+use pico_wifi::{configure_network, WifiConfiguration};
 mod tcpserver;
 
 use temp_sensor::dht11::Dht11;
@@ -41,9 +43,19 @@ async fn main(spawner: Spawner) {
         p.DMA_CH0,
     );
 
+    let wifi_config = WifiConfiguration {
+        wifi_ssid: WIFI_SSID,
+        wifi_password: Some(WIFI_PASSWORD),
+        ipv4: Some(StaticConfigV4 {
+            address: Ipv4Cidr::new(Ipv4Address::new(192, 168, 1, 6), 24),
+            gateway: Some(Ipv4Address::new(192, 168, 0, 1)),
+            dns_servers: Vec::new(),
+        }),
+        ipv6: None,
+    };
+
     let (ctrl, stack) =
-        configure_network(&spawner, pwr, spi, WIFI_SSID, Some(WIFI_PASSWORD))
-            .await;
+        configure_network(&spawner, pwr, spi, wifi_config).await;
 
     {
         let mut data = Flex::new(AnyPin::from(p.PIN_14));
