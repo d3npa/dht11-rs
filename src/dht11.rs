@@ -73,6 +73,8 @@ impl Dht11 {
             }
         }
 
+        Timer::after_millis(100).await;
+
         return Dht11Packet::from(buf);
     }
 }
